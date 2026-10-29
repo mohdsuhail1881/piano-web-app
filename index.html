@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Playable Piano</title>
+<meta name="description" content="A playable piano in your browser. Click, tap, or use your computer keyboard. Record and play back what you play.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Playable Piano</h1>
+  <p class="tagline">Click, tap, or play with your keyboard. No install, no account.</p>
+</header>
+
+<section class="controls" aria-label="Piano controls">
+  <div class="control">
+    <label for="octave-label">Octave</label>
+    <div class="octave-row">
+      <button id="oct-down" aria-label="Octave down">−</button>
+      <span id="octave-label">C4 – B5</span>
+      <button id="oct-up" aria-label="Octave up">+</button>
+    </div>
+  </div>
+  <div class="control">
+    <label for="volume">Volume</label>
+    <input id="volume" type="range" min="0" max="100" value="80" aria-label="Volume">
+  </div>
+  <div class="control">
+    <label for="waveform">Sound</label>
+    <select id="waveform" aria-label="Sound">
+      <option value="piano" selected>Piano-like</option>
+      <option value="sine">Soft (sine)</option>
+      <option value="triangle">Mellow (triangle)</option>
+      <option value="sawtooth">Bright (sawtooth)</option>
+    </select>
+  </div>
+  <div class="control">
+    <label>Sustain</label>
+    <button id="sustain" aria-pressed="false">Sustain: Off</button>
+  </div>
+</section>
+
+<section class="now-playing" aria-live="polite">
+  <span id="now-playing">Press a key…</span>
+  <span id="rec-indicator" class="rec" hidden>● Recording</span>
+</section>
+
+<main class="piano-wrap">
+  <div id="piano" class="piano" role="group" aria-label="Piano keyboard"></div>
+  <p class="key-help">Computer keys — lower octave: <b>Z S X D C V G B H N J M</b> &nbsp;·&nbsp; upper octave: <b>Q 2 W 3 E R 5 T 6 Y 7 U</b> &nbsp;·&nbsp; hold <b>Shift</b> for sustain</p>
+</main>
+
+<section class="actions" aria-label="Record and demo songs">
+  <div class="action-group">
+    <h2>Record</h2>
+    <button id="rec-toggle" class="btn">Start recording</button>
+    <button id="play-rec" class="btn" disabled>Play recording</button>
+    <button id="clear-rec" class="btn" disabled>Clear</button>
+    <p id="rec-status" class="hint">Nothing recorded yet.</p>
+  </div>
+  <div class="action-group">
+    <h2>Learn a tune</h2>
+    <button class="btn song" data-song="twinkle">Twinkle Twinkle</button>
+    <button class="btn song" data-song="ode">Ode to Joy</button>
+    <button class="btn song" data-song="birthday">Happy Birthday</button>
+    <button id="stop-song" class="btn" disabled>Stop tune</button>
+    <p class="hint">Watch the keys light up, then try it yourself.</p>
+  </div>
+</section>
+
+<footer><p>Sound is synthesized live with the Web Audio API — no audio files needed. Works offline once loaded.</p></footer>
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
